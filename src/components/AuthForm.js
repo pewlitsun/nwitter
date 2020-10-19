@@ -6,7 +6,7 @@ const AuthForm = () => {
     const [email,setEmail] = useState('');
     const [password,setPassword] = useState('');
     const [newAccount, setNewAccount] = useState(true);
-    const [setError] = useState('');
+    const [error,setError] = useState('');
     const onChange = (event) => {
         const {target:{name,value}} = event;
 
@@ -33,12 +33,13 @@ const AuthForm = () => {
     const toggleAccount = () => { setNewAccount((prev) => !prev); };
 
     return(        
-    <><form onSubmit = {onSubmit}>
-        <input name='email' type='text' placeholder='' required value={email} onChange={onChange} />
-        <input name='pass' type='password' placeholder='' required value={password} onChange={onChange} />
-        <input type='submit' value={newAccount ? 'Sign up' : 'Sign in'} />
+    <><form onSubmit = {onSubmit}  className="container">
+        <input className="authInput" name='email' type='text' placeholder='' required value={email} onChange={onChange} />
+        <input className="authInput" name='pass' type='password' placeholder='' required value={password} onChange={onChange} />
+        <input className="authInput authSubmit" type='submit' value={newAccount ? 'Sign up' : 'Sign in'} />
+        {error && <span className="authError">{error}</span>}
     </form>
-    <span onClick={toggleAccount}>{newAccount ? 'Sign in' : 'Sign up'} </span>
+    <span className="authSwitch" onClick={toggleAccount}>{newAccount ? 'Sign in' : 'Sign up'} </span>
     </>)
 }
 

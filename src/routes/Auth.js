@@ -1,9 +1,14 @@
 import AuthForm from 'components/AuthForm';
 import { authService, firebaseInstance } from 'myBase';
-import React, { useState } from 'react';
+import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faGoogle,
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
 
 const Auth = () => {
-    const [error] = useState('');
     const onSocialClick = async (event) => {
          const provider = new firebaseInstance.auth.GoogleAuthProvider();
          await authService.signInWithPopup(provider);
@@ -12,7 +17,6 @@ const Auth = () => {
         <AuthForm/>
         <div>
             <button onClick={onSocialClick}>Google Log in</button>
-            {error}
         </div>
     </div>
     )
